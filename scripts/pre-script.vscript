@@ -1,0 +1,10 @@
+// You can mutate req before it is sent
+log.info("pre-script running");
+
+// Add a trace header if missing
+if (!req.headers["X-Trace-Id"]) {
+  req.headers["X-Trace-Id"] = "trace-" + (crypto?.randomUUID?.() ?? Date.now());
+}
+
+// Set a value in context for later requests (chain shared context)
+ctx.set("lastTraceId", req.headers["X-Trace-Id"]);

@@ -1,0 +1,4 @@
+// available: ctx, env, req, log, crypto
+ctx.set("msg", "hello from vars");
+ctx.set("traceId", "demo-trace-001");
+log.info("set-vars.vscript: msg + traceId stored in ctx");

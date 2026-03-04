@@ -1,0 +1,16 @@
+Collection: Echo
+Description: Basic smoke test against postman-echo.com
+
+---
+
+Name: getEcho
+Request:
+GET {{host}}/get?hello=world
+
+Headers:
+X-Env: {{tenantId}}
+
+Tests:
+- status is 200
+- header content-type contains json
+- json.path args.hello exists

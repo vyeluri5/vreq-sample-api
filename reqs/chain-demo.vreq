@@ -1,0 +1,56 @@
+Collection: Chain Demo
+Description: Demonstrates Vars, Scripts, and DependsOn
+Tags: demo
+
+Chain:
+Order: setVars -> sendPost -> sendGet
+
+---
+
+Name: setVars
+Request:
+GET {{host}}/get?step=setVars
+
+Scripts:
+Pre: ../scripts/set-vars.vscript
+
+Tests:
+- status is 200
+
+---
+
+Name: sendPost
+DependsOn: setVars
+
+Request:
+POST {{host}}/post
+
+Headers:
+Content-Type: application/json
+X-Trace-Id: {{traceId}}
+
+Body:
+{
+  "message": "{{msg}}",
+  "tenant": "{{tenantId}}"
+}
+
+Scripts:
+Pre: ../scripts/pre-script.vscript
+
+Tests:
+- status is 200
+- header content-type contains json
+- json.path json.message exists
+
+---
+
+Name: sendGet
+DependsOn: sendPost
+
+Request:
+GET {{host}}/get?step=sendGet&tenant={{tenantId}}
+
+Tests:
+- status is 200
+- header content-type contains json
