@@ -5,7 +5,12 @@ Description: Basic smoke test against postman-echo.com
 
 Name: getEcho
 Request:
-GET {{host}}/get?hello=world
+GET {{host}}/get
+
+Query:
+hello: world
+tenant: {{tenantId}}
+page: 1
 
 Headers:
 X-Env: {{tenantId}}

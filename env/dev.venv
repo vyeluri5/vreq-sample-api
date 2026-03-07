@@ -1,5 +1,6 @@
 # Public demo host (no auth needed)
 host: https://postman-echo.com
+debug: true
 
 # Defaults
 headers.Accept: application/json
