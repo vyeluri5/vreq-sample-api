@@ -1,0 +1,22 @@
+Collection: Test
+Description: Basic smoke test for Post requests
+
+---
+
+Name: getPosts
+Request:
+GET http://localhost:8000
+
+Query:
+userId: 1
+
+Headers:
+Accept: application/json
+X-Env: {{tenantId}}
+
+Tests:
+- status is 200
+- header content-type contains json
+- json.path length greaterThan 0
+- json.path any(id equals 1)
+- json.path filter(userId equals 1) count greaterThan 0

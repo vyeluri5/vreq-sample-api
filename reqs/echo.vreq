@@ -4,6 +4,9 @@ Description: Basic smoke test against postman-echo.com
 ---
 
 Name: getEcho
+Vars:
+    url-param: vreq-postman-alternative
+
 Request:
 GET {{host}}/get
 
@@ -11,9 +14,11 @@ Query:
 hello: world
 tenant: {{tenantId}}
 page: 1
+urlParam: {{url-param}}
 
 Headers:
 X-Env: {{tenantId}}
+scope: api.scope #override headers scope defined in environment .env
 
 Tests:
 - status is 200

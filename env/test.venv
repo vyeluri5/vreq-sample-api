@@ -1,0 +1,17 @@
+# Public demo host (no auth needed)
+host: https://jsonplaceholder.typicode.com
+debug: true
+
+# Defaults
+headers.Accept: application/json
+headers.User-Agent: vreq/1.0
+
+# # shared vars
+# msg: hello from env
+# traceId: demo-trace-001
+
+# Timeout
+timeoutMs: 30000
+
+# Example variables you may reuse in requests
+tenantId: test

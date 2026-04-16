@@ -27,14 +27,15 @@ POST {{host}}/post
 
 Headers:
 Content-Type: application/json
-X-Trace-Id: {{traceId}}
+# X-Trace-Id: {{traceId}}
 
 Body:
 {
-  "message": "{{msg}}",
-  "tenant": "{{tenantId}}"
+  "message": "test",
+  # "tenant": {
+  #   "id": "123"
+  # }
 }
-
 Scripts:
 Pre: ../scripts/pre-script.vscript
 
