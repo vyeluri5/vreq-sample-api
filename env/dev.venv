@@ -1,5 +1,7 @@
 # Public demo host (no auth needed)
 host: https://postman-echo.com
+quoteStartDate: 2026-01-01
+quoteEndDate: 2027-12-31
 debug: true
 
 # Defaults

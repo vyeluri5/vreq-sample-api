@@ -1,0 +1,19 @@
+export default function run(inputs, ctx) {
+  ctx.log(`quoteStartDate=${inputs.quoteStartDate}`);
+  ctx.log(`quoteEndDate=${inputs.quoteEndDate}`);
+
+  const historicalAverage = 100;
+  const forwardAverage = 100;
+  const combinedAverage = (historicalAverage + forwardAverage) / 2;
+  const finalValue = combinedAverage * 0.045;
+
+  ctx.log(`combinedAverage=${combinedAverage}`);
+  ctx.log(`finalValue=${finalValue}`);
+
+  return {
+    historicalAverage,
+    forwardAverage,
+    combinedAverage,
+    finalValue
+  };
+}

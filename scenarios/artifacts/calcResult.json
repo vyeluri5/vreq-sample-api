@@ -1,0 +1,26 @@
+{
+  "result": {
+    "historicalAverage": 100,
+    "forwardAverage": 100,
+    "combinedAverage": 100,
+    "finalValue": 4.5
+  },
+  "logs": [
+    {
+      "level": "info",
+      "message": "quoteStartDate=2026-02-01"
+    },
+    {
+      "level": "info",
+      "message": "quoteEndDate=2027-12-31"
+    },
+    {
+      "level": "info",
+      "message": "combinedAverage=100"
+    },
+    {
+      "level": "info",
+      "message": "finalValue=4.5"
+    }
+  ]
+}

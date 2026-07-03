@@ -1,0 +1,26 @@
+Collection: Integrations
+
+---
+Name: CreateJiraIssue
+
+Request:
+POST {{host}}/post
+
+Headers:
+Content-Type: application/json
+Accept: application/json
+X-Tenant: {{tenantId}}
+
+Vars:
+  finalValue: 123
+  salesforceValue: 345
+
+Body:
+{
+  "summary": "Price mismatch detected",
+  "description": "Calculated={{finalValue}}",
+  "test": "Salesforce={{salesforceValue}}"
+}
+Tests:
+- status is 200
+- header content-type contains json

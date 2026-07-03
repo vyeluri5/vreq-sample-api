@@ -29,9 +29,14 @@ Headers:
 Content-Type: application/json
 # X-Trace-Id: {{traceId}}
 
+Vars:
+  id: 123
+  name: Test
+
 Body:
 {
-  "message": "test",
+  "message": "{{name}}",
+  "id": "{{id}}"
   # "tenant": {
   #   "id": "123"
   # }

@@ -1,0 +1,20 @@
+Collection: Pricing
+
+---
+Name: ForwardPrices
+
+Request:
+GET {{host}}/get
+
+Query:
+type: forward
+startDate: 2026-06-25
+endDate: {{quoteEndDate}}
+
+Headers:
+Accept: application/json
+X-Tenant: {{tenantId}}
+
+Tests:
+- status is 200
+- header content-type contains json
