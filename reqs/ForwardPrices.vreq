@@ -3,11 +3,15 @@ Collection: Pricing
 ---
 Name: ForwardPrices
 
+Vars:
+    Code: 1234
+
 Request:
 GET {{host}}/get
 
 Query:
 type: forward
+code: {{Code}}
 startDate: 2026-06-25
 endDate: {{quoteEndDate}}
 

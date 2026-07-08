@@ -33,7 +33,7 @@ CreateJiraIssue.Body:
     "test": "222"
   }
 Scripts:
-- File: ../scripts/ProfitMargin.vscript
+- File: ../scripts/FormulaeCalculation.vscript
   As: profitMargin
 
 - File: ../scripts/CompareSalesforce.vscript
@@ -46,6 +46,13 @@ Flow:
   PersistAs: json
 
 - Run: ForwardPrices
+  SaveAs: forward
+  Persist: artifacts/forward.json
+  PersistAs: json
+
+- Run: ForwardPrices
+  Vars:
+    Code: 6789
   SaveAs: forward
   Persist: artifacts/forward.json
   PersistAs: json

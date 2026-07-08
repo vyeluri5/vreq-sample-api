@@ -1,6 +1,7 @@
 {
   "args": {
     "type": "forward",
+    "code": "6789",
     "startDate": "2026-06-25",
     "endDate": "2027-12-31"
   },
@@ -14,5 +15,5 @@
     "accept-language": "*",
     "accept": "application/json"
   },
-  "url": "https://postman-echo.com/get?type=forward&startDate=2026-06-25&endDate=2027-12-31"
+  "url": "https://postman-echo.com/get?type=forward&code=6789&startDate=2026-06-25&endDate=2027-12-31"
 }
