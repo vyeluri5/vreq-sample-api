@@ -1,0 +1,15 @@
+export default function run(inputs, ctx) {
+  const calculated = Number(inputs.calculated.finalValue);
+  const salesforceValue = Number(inputs.salesforce.args.expectedValue);
+  const match = calculated === salesforceValue;
+
+  ctx.log(`calculated=${calculated}`);
+  ctx.log(`salesforceValue=${salesforceValue}`);
+  ctx.log(`match=${match}`);
+
+  return {
+    match,
+    finalValue: calculated,
+    salesforceValue
+  };
+}

@@ -1,0 +1,19 @@
+Collection: Integrations
+
+---
+Name: GetSalesforceData
+
+Request:
+GET {{host}}/get
+
+Query:
+source: salesforce
+expectedValue: 4.5
+
+Headers:
+Accept: application/json
+X-Tenant: {{tenantId}}
+
+Tests:
+- status is 200
+- header content-type contains json

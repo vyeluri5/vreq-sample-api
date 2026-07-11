@@ -1,0 +1,54 @@
+{
+  "args": {
+    "type": "historical",
+    "startDate": "2026-02-01",
+    "endDate": "2026-06-30"
+  },
+  "data": {
+    "discriminators": [
+      {
+        "points": [
+          {
+            "data": "2026-01-01",
+            "value": 73.2
+          },
+          {
+            "data": "2026-01-02",
+            "value": 41.6
+          }
+        ]
+      }
+    ]
+  },
+  "files": {},
+  "form": {},
+  "headers": {
+    "host": "postman-echo.com",
+    "content-type": "application/json",
+    "x-tenant": "dev",
+    "accept-encoding": "gzip, br",
+    "sec-fetch-mode": "cors",
+    "x-forwarded-proto": "https",
+    "accept-language": "*",
+    "content-length": "220",
+    "accept": "application/json",
+    "user-agent": "vreq/1.0"
+  },
+  "json": {
+    "discriminators": [
+      {
+        "points": [
+          {
+            "data": "2026-01-01",
+            "value": 73.2
+          },
+          {
+            "data": "2026-01-02",
+            "value": 41.6
+          }
+        ]
+      }
+    ]
+  },
+  "url": "https://postman-echo.com/post?type=historical&startDate=2026-02-01&endDate=2026-06-30"
+}

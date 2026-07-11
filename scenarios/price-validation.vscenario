@@ -1,0 +1,90 @@
+Name: Price Validation Scenario
+Env: dev
+
+Use Requests:
+- Collection: Pricing
+  Request: HistoricalPrices
+
+- Collection: Pricing
+  Request: ForwardPrices
+
+- Collection: Integrations
+  Request: GetSalesforceData
+
+- Collection: Integrations
+  Request: CreateJiraIssue
+
+Inputs:
+quoteStartDate: 2026-02-01
+quoteEndDate: 2027-12-31
+code: 65281
+
+Request Overrides:
+HistoricalPrices.Query:
+  startDate: {{quoteStartDate}}
+  endDate: 2026-06-30
+
+ForwardPrices.Query:
+  startDate: 2026-06-25
+  endDate: {{quoteEndDate}}
+
+CreateJiraIssue.Body:
+  {
+    "summary": "Price mismatch detected",
+    "test": "222"
+  }
+Scripts:
+- File: ../scripts/FormulaeCalculation.vscript
+  As: MarginDiffCalculation
+
+- File: ../scripts/CompareSalesforce.vscript
+  As: compareCalc
+
+Flow:
+- Run: HistoricalPrices
+  SaveAs: historical
+  Persist: artifacts/historical.json
+  PersistAs: json
+
+- Run: ForwardPrices
+  SaveAs: forward
+  Persist: artifacts/forward.json
+  PersistAs: json
+
+- Run: ForwardPrices
+  Vars:
+    Code: {{code}}
+  SaveAs: forward
+  Persist: artifacts/forward.json
+  PersistAs: json
+
+- Script: MarginDiffCalculation
+  Inputs:
+    quoteStartDate: {{quoteStartDate}}
+    quoteEndDate: {{quoteEndDate}}
+    historicalPrices: {{historical.response.json}}
+    forwardPrices: {{forward.response.json}}
+  SaveAs: calcResult
+  Persist: artifacts/calcResult.json
+  PersistAs: full
+
+- Run: GetSalesforceData
+  SaveAs: salesforce
+
+- Script: compareCalc
+  Inputs:
+    calculated: {{calcResult}}
+    salesforce: {{salesforce.response.json}}
+  SaveAs: comparison
+  Persist: artifacts/comparison.json
+  PersistAs: json
+
+- If: comparison.match == false
+  Then:
+    - Run: CreateJiraIssue
+      SaveAs: jiraResult
+      Persist: artifacts/jiraResult.json
+      PersistAs: full
+
+Assertions:
+- expr comparison.match equals true

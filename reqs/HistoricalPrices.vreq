@@ -1,0 +1,38 @@
+Collection: Pricing
+
+---
+Name: HistoricalPrices
+
+Request:
+POST {{host}}/post
+
+Query:
+type: historical
+startDate: {{quoteStartDate}}
+endDate: 2026-06-24
+
+Headers:
+Content-Type: application/json
+Accept: application/json
+X-Tenant: {{tenantId}}
+
+Body:
+{
+  "discriminators": [
+    {
+      "points": [
+        {
+          "data": "2026-01-01",
+          "value": 73.2
+        },
+        {
+          "data": "2026-01-02",
+          "value": 41.6
+        }
+      ]
+    }
+  ]
+}
+Tests:
+- status is 200
+- header content-type contains json
