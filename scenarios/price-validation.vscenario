@@ -1,4 +1,4 @@
-Name: Price Validation
+Name: Price Validation Scenario
 Env: dev
 
 Use Requests:
@@ -17,6 +17,7 @@ Use Requests:
 Inputs:
 quoteStartDate: 2026-02-01
 quoteEndDate: 2027-12-31
+code: 65281
 
 Request Overrides:
 HistoricalPrices.Query:
@@ -34,7 +35,7 @@ CreateJiraIssue.Body:
   }
 Scripts:
 - File: ../scripts/FormulaeCalculation.vscript
-  As: profitMargin
+  As: MarginDiffCalculation
 
 - File: ../scripts/CompareSalesforce.vscript
   As: compareCalc
@@ -52,12 +53,12 @@ Flow:
 
 - Run: ForwardPrices
   Vars:
-    Code: 6789
+    Code: {{code}}
   SaveAs: forward
   Persist: artifacts/forward.json
   PersistAs: json
 
-- Script: profitMargin
+- Script: MarginDiffCalculation
   Inputs:
     quoteStartDate: {{quoteStartDate}}
     quoteEndDate: {{quoteEndDate}}
