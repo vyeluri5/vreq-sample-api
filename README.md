@@ -1,5 +1,15 @@
 # VReq Sample API
 
+<a href="https://peerpush.com/p/vreq-api-runner"
+  target="_blank"
+  rel="noopener">
+  <img
+    src="https://peerpush.com/p/vreq-api-runner/badge.png"
+    alt="VReq API Runner on PeerPush"
+    style="width: 230px;"
+  />
+</a>
+
 This repository demonstrates the current **VReq - API Runner for VS Code**
 workflow using request files, environments, scripts, and scenarios.
 
