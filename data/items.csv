@@ -1,0 +1,4 @@
+id,path,other
+1001,/items/a,blue
+1002,/items/b,green
+1003,"/items/c, special",red

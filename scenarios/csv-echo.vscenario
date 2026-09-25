@@ -1,0 +1,44 @@
+Name: CSV Echo Loop
+
+Use Requests:
+- Collection: Pricing
+  Request: ForwardPrices
+
+- Collection: Pricing
+  Request: HistoricalPrices
+
+Scripts:
+- File: ../scripts/load-csv.vscript
+  As: loadCsv
+
+Flow:
+- Script: loadCsv
+  Inputs:
+    file: ../data/items.csv
+  SaveAs: rows
+
+- ForEach: rows
+  As: row
+  IndexAs: rowIndex
+  Steps:
+    - Run: ForwardPrices
+      Query:
+        id: {{row.id}}
+        path: {{row.path}}
+        index: {{rowIndex}}
+      Headers:
+        X-Other: {{row.other}}
+      SaveAs: getResult
+
+    - Run: HistoricalPrices
+      Body:
+        {
+          "id": "{{row.id}}",
+          "path": "{{row.path}}",
+          "other": "{{row.other}}",
+          "rowIndex": {{rowIndex}}
+        }
+      SaveAs: postResult
+
+Assertions:
+- expr rows.length equals 3

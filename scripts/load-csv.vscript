@@ -1,0 +1,5 @@
+export default function run(inputs, ctx) {
+  const rows = ctx.readCsv(inputs.file);
+  ctx.log(`Loaded ${rows.length} CSV rows`);
+  return rows;
+}
